@@ -1,0 +1,6 @@
+<div>
+    <!-- <label for="todo">ToDo</label> -->
+    <input [(ngModel)]="newTask" type="text" id="todo" name="todo" placeholder="What's on your mind..">
+    <input (click)="addToList()" type="submit" value="Submit">
+</div>
+<app-list [items]="items"></app-list>
