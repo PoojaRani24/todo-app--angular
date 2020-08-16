@@ -1,9 +1,11 @@
 <!-- <p>list works!</p> -->
 
 <div *ngFor="let item of items; let index = index;" class="flex-container todo">
-        <span >{{ item | titlecase }}</span> 
+        <span >
+            <mat-icon style="margin:10px;">check_circle_outline</mat-icon>
+            {{ item | titlecase }}</span> 
         <div class="button">
-            <input (click)="deleteTask(index)" type="submit" value="Delete">
+            <input (click)="deleteTask(index)" type="submit" value="Delete" >
             <input (click)="editTask(index)" type="submit" value="Edit">
         </div>
     </div> 

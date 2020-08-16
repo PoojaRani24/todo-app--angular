@@ -14,8 +14,9 @@ public deleteTask(index:number){
 }
 
 public editTask(index:number){
-  window.alert ("edit todo");
+  window.alert (this.items[index] +" is marked as Done !");
   // this.items.splice(index,1);
+  this.items.splice(index,1);
 }
 
   ngOnInit(): void {
