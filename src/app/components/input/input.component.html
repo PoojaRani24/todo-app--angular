@@ -1,6 +1,52 @@
 <div>
     <!-- <label for="todo">ToDo</label> -->
-    <input [(ngModel)]="newTask" type="text" id="todo" name="todo" placeholder="What's on your mind..">
-    <input (click)="addToList()" type="submit" value="Submit">
+    <input [(ngModel)]="newTask" #todo (keyup.enter)="onEnter(todo.value)" type="text" placeholder="What's on your mind..">
+    <input #todo (keyup.enter)="onEnter(todo.value)" (click)="addToList()" type="submit" value="Submit">
 </div>
-<app-list [items]="items"></app-list>
+<!-- <app-list [items]="items"></app-list> -->
+
+  
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- ID Column --> 
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef > ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+  
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell class="name" *matHeaderCellDef > Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name | uppercase}} </mat-cell>
+      </ng-container>
+
+      <!-- Action Column -->
+    <ng-container class="edit" matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <td mat-cell *matCellDef="let row" class="action-link-edit"> 
+            <input class="edit" (click)="openDialog('Update',row)" value="Edit" type="submit"> 
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="del">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let row" class="action-link-del"> 
+            <input (click)="openDialog('Delete',row)" value="Del" type="submit">
+        </td>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  <!--
+  Copyright Google LLC All Rights Reserved.
+  
+  Use of this source code is governed by an MIT-style license that can be
+  found in the LICENSE file at https://angular.io/license
+  -->
